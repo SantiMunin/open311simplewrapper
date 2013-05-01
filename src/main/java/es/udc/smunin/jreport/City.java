@@ -6,9 +6,11 @@ package es.udc.smunin.jreport;
 public enum City {
 
 	SAN_FRANCISCO(
-			"San Francisco",
+			"San Francisco, CA",
 			"https://open311.sfgov.org/dev/V2/services.xml?jurisdiction_id=sfgov.org",
-			"sfgov.org");
+			"sfgov.org"), CHICAGO("Chicago, IL",
+			"http://test311api.cityofchicago.org/open311/v2/services.xml",
+			"cityofchicago.org");
 	private String cityName;
 	private String jurisdictionId;
 	private String baseUrl;
@@ -31,6 +33,9 @@ public enum City {
 		return cityName;
 	}
 
+	/**
+	 * Retuns the city name.
+	 */
 	public String toString() {
 		return this.getCityName();
 	}
