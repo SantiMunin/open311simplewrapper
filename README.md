@@ -15,7 +15,6 @@ In order to test this project you should have [Maven](http://maven.apache.org/) 
 ```bash
 
 sudo sh add_certificates.sh <path/to/your/key/store>
-
 ``` 
 
 ```bash
@@ -30,9 +29,9 @@ mvn test
 Usage
 --------------
 
-If you compile the project you will find the .jar in `/target/jreport-*.jar`. Just import it in your application and start hacking!
+If you compile the project you will find the .jar in `/target`. Just import it in your application and start hacking!
 
-To start using the library you need to use is the `Jreport` class.
+To start using the library you need to use is the `JReport` class.
 ```java
 
 // Get the JReport single instance
