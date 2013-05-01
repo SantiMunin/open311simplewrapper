@@ -10,49 +10,45 @@ import es.udc.smunin.jreport.wrappers.JWrapper;
  * 
  */
 public class JReport {
-
+	/**
+	 * Single instance of the class.
+	 */
 	private static JReport instance = new JReport();
 
 	private JReport() {
 	}
 
+	/**
+	 * @return the single instance of the class.
+	 */
 	public static JReport getInstance() {
 		return instance;
 	}
 
-	public JWrapper getCityWrapper(CITY city) {
+	/**
+	 * Returns the wrapper of the given city. It allows to get data from its
+	 * server.
+	 * 
+	 * @param city
+	 *            Desired city to work with.
+	 * @return Wrapper of the given city.
+	 */
+	public JWrapper getCityWrapper(City city) {
 		return new JWrapper(city.getCityName(), city.getBaseUrl(),
 				city.getJurisdictionId());
 	}
 
 	/**
-	 * Cities supported by the wrapper.
+	 * 
+	 * @return array with the name of the all supported cities.
 	 */
-	public static enum CITY {
-		SAN_FRANCISCO(
-				"San Francisco",
-				"https://open311.sfgov.org/dev/V2/services.xml?jurisdiction_id=sfgov.org",
-				"sfgov.org");
-		private String cityName;
-		private String jurisdictionId;
-		private String baseUrl;
+	public String[] getCities() {
+		City[] values = City.values();
+		String[] cities = new String[values.length];
 
-		private CITY(String cityName, String baseUrl, String jurisdictionId) {
-			this.cityName = cityName;
-			this.baseUrl = baseUrl;
-			this.jurisdictionId = jurisdictionId;
+		for (int i = 0; i < values.length; i++) {
+			cities[i] = values[i].toString();
 		}
-
-		public String getJurisdictionId() {
-			return jurisdictionId;
-		}
-
-		public String getBaseUrl() {
-			return baseUrl;
-		}
-
-		public String getCityName() {
-			return cityName;
-		}
+		return cities;
 	}
 }
