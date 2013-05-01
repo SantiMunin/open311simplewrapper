@@ -7,7 +7,14 @@ import java.util.List;
 import org.junit.Test;
 
 import es.udc.smunin.jreport.wrappers.datamodels.Service;
+import es.udc.smunin.jreport.wrappers.datamodels.ServiceType;
 
+/**
+ * Tests the parsing of the raw XML data.
+ * 
+ * @author Santiago Munín <santimunin@gmail.com>
+ * 
+ */
 public class DataParserTest {
 
 	private String serviceXmlString = "<services xmlns:m=\"http://org/sfgov/sf311v2/services\" "
@@ -24,13 +31,13 @@ public class DataParserTest {
 				serviceXmlString);
 		assertEquals(services.size(), 1);
 		Service service = services.get(0);
-		assertEquals(service.getCode(), 1);
+		assertEquals(service.getCode(), "001");
 		assertEquals(service.hasMetadata(), false);
 		assertEquals(service.getKeywords().length, 3);
 		assertEquals(service.getKeywords()[0], "lorem");
 		assertEquals(service.getKeywords()[1], "ipsum");
 		assertEquals(service.getKeywords()[2], "dolor");
-		assertEquals(service.getType(), Service.SERVICE_TYPE.REALTIME);
+		assertEquals(service.getType(), ServiceType.REALTIME);
 		assertEquals(service.getGroup(), "Litter Receptacles");
 		assertEquals(service.getName(), "Cans_Left_Out_24x7");
 		assertEquals(
