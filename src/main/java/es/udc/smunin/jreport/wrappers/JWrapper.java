@@ -12,6 +12,7 @@ import es.udc.smunin.jreport.wrappers.datamodels.Service;
 
 /**
  * Wraps an endpoint and allows users to get data from it without caring about
+ * network operations or data parsing.
  * 
  * @author Santiago Munín <santimunin@gmail.com>
  * 
@@ -30,6 +31,13 @@ public class JWrapper {
 		this.jurisdictionId = jurisdictionId;
 	}
 
+	/**
+	 * Retrieves from the wrapped endpoint data about services.
+	 * 
+	 * @return the city service list.
+	 * @throws IOException
+	 *             If there was any problem with the connection.
+	 */
 	public List<Service> getServices() throws IOException {
 		Map<String, String> parameters = new HashMap<String, String>();
 		parameters.put(PARAM_JURISDICTION_ID, jurisdictionId);
@@ -39,12 +47,15 @@ public class JWrapper {
 			return DataParser.getInstance().parseServicesList(httpResponse);
 		} catch (URISyntaxException e) {
 		}
-		// TODO
+		// FIXME
 		return null;
 
 	}
 
+	/**
+	 * @return a string containing "Wrapper of the <cityName> city".
+	 */
 	public String toString() {
-		return "Wrapper of the " + cityName + " city.";
+		return "Wrapper of the " + cityName + " city";
 	}
 }
