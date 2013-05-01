@@ -10,7 +10,7 @@ Configuration
 
 In order to test this project you should have [Maven](http://maven.apache.org/) installed in your system. You can find it in any repository you use (brew, apt...).
 
-**IMPORTANT**: Before you start using the library you need to add some certificates to your java keystore (those certificates are in `/certificates`). Your keystore probably is in `$JAVA_HOME/lib/security/cacerts` or `$JAVA_HOME/jre/lib/security/cacerts`.
+**IMPORTANT**: Before you start using the library you need to add some certificates to your java keystore (those certificates are in `/certificates`). Your keystore probably is in `$JAVA_HOME/lib/security/cacerts` or `$JAVA_HOME/jre/lib/security/cacerts`. The password should be *changeit* (try *changeme* if you are on a Mac and *changeit* doesn't work).
 
 ```bash
 
