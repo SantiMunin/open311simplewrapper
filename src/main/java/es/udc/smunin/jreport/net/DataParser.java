@@ -12,18 +12,39 @@ import org.xml.sax.InputSource;
 
 import es.udc.smunin.jreport.wrappers.datamodels.Service;
 
+/**
+ * Singleton class which parses the received data from the servers. By now it
+ * only supports the XML format.
+ * 
+ * @author Santiago Munín <santimunin@gmail.com>
+ */
 public class DataParser {
+	/**
+	 * Single instance of the class.
+	 */
 	private static DataParser instance = new DataParser();
 
 	private DataParser() {
 	}
 
+	/**
+	 * 
+	 * @return the single instance of the class.
+	 */
 	public static DataParser getInstance() {
 		return instance;
 	}
 
+	/**
+	 * Parses a list of services.
+	 * 
+	 * @param rawXmlData
+	 *            Services in XML.
+	 * @return A list of service objects.
+	 */
 	public List<Service> parseServicesList(String rawXmlData) {
 		DOMParser parser = new DOMParser();
+		rawXmlData = rawXmlData.replaceAll("\\s*\n\\s*", "");
 
 		List<Service> result = new ArrayList<Service>();
 		try {
@@ -34,13 +55,13 @@ public class DataParser {
 			for (int i = 0; i < list.getLength(); i++) {
 				Node serviceNode = list.item(i);
 				NodeList serviceFields = serviceNode.getChildNodes();
-				Long code = Long.valueOf(serviceFields.item(0).getFirstChild()
-						.getNodeValue());
+
+				String code = serviceFields.item(0).getFirstChild()
+						.getNodeValue();
 				boolean metadata = Boolean.valueOf(serviceFields.item(1)
 						.getFirstChild().getNodeValue());
 				String type = serviceFields.item(2).getFirstChild()
 						.getNodeValue();
-
 				String[] keywords = getKeywords(serviceFields.item(3));
 				String group = serviceFields.item(4).getFirstChild()
 						.getNodeValue();
@@ -51,17 +72,23 @@ public class DataParser {
 
 				result.add(new Service(code, metadata, type, group, name,
 						description, keywords));
-
 			}
 		} catch (Exception e) {
-			// TODO
 			System.out.println(e.getMessage());
-			return null;
+			// FIXME
+			return result;
 		}
-
 		return result;
 	}
 
+	/**
+	 * Transforms a comma separated list of keywords into to an array of
+	 * strings. Used to parse the services.
+	 * 
+	 * @param keywordsNode
+	 *            The keywords node.
+	 * @return array of strings containing all the keywords.
+	 */
 	private String[] getKeywords(Node keywordsNode) {
 		NodeList keywords = keywordsNode.getChildNodes();
 		if (keywords.getLength() == 0) {
@@ -75,5 +102,4 @@ public class DataParser {
 		}
 		return result;
 	}
-
 }

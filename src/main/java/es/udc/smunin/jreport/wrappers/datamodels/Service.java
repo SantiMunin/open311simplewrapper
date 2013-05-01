@@ -8,51 +8,27 @@ package es.udc.smunin.jreport.wrappers.datamodels;
  */
 public class Service {
 
-	/**
-	 * Represents the type of a service.
-	 * 
-	 * @author Santiago Munín <santimunin@gmail.com>
-	 * 
-	 */
-	public static enum SERVICE_TYPE {
-		REALTIME, BATCH, BLACKBOX;
-
-		public static SERVICE_TYPE getFromString(String type) {
-			if (type.equals("realtime")) {
-				return REALTIME;
-			}
-			if (type.equals("batch")) {
-				return BATCH;
-			}
-			if (type.equals("blackbox")) {
-				return BLACKBOX;
-			}
-			return null;
-		}
-	}
-
-	private long code;
+	private String code;
 	private boolean metadata;
-	private SERVICE_TYPE type;
+	private ServiceType type;
 	private String[] keywords;
 	private String group;
 	private String name;
 	private String description;
 
-	// TODO document constructor
-	public Service(long code, boolean metadata, String type, String group,
+	public Service(String code, boolean metadata, String type, String group,
 			String name, String description, String[] keywords) {
 		super();
 		this.code = code;
 		this.metadata = metadata;
-		this.type = SERVICE_TYPE.getFromString(type);
+		this.type = ServiceType.getFromString(type);
 		this.group = group;
 		this.name = name;
 		this.description = description;
 		this.keywords = keywords;
 	}
 
-	public long getCode() {
+	public String getCode() {
 		return code;
 	}
 
@@ -60,7 +36,7 @@ public class Service {
 		return metadata;
 	}
 
-	public SERVICE_TYPE getType() {
+	public ServiceType getType() {
 		return type;
 	}
 
