@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# This scripts adds to the java keystore 
+# all the certificates of the servers which are not trusted in java by default.
 DIRECTORY="certificates"
 
 if [ $# -ne 1 ]
