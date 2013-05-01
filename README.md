@@ -10,6 +10,13 @@ Configuration
 
 In order to test this project you should have [Maven](http://maven.apache.org/) installed in your system. You can find it in any repository you use (brew, apt...).
 
+**IMPORTANT**: Before you start using the library you need to add some certificates to your java keystore (those certificates are in `/certificates`). Your keystore probably is in `$JAVA_HOME/lib/security/cacerts` or `$JAVA_HOME/jre/lib/security/cacerts`.
+
+```bash
+
+sudo sh add_certificates.sh <path/to/your/key/store>
+
+``` 
 
 ```bash
 
@@ -23,7 +30,7 @@ mvn test
 Usage
 --------------
 
-If you compile the project you will find a jreport-version.jar in /target. Just import it in your application and start hacking!
+If you compile the project you will find the .jar in `/target/jreport-*.jar`. Just import it in your application and start hacking!
 
 To start using the library you need to use is the `Jreport` class.
 ```java
